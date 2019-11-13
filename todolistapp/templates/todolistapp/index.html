@@ -1,0 +1,28 @@
+<html>
+    <h1>The Secret Sayings</h1> 
+    {%if user.is_authenticated %}
+    Hi {{user.username}}
+    {% for to in todo %}
+    <ul>
+        <li>
+            
+            {{to.text}}
+            
+            <a href="{% url 'like' to.id %}"><button>like</button></a>
+            {{ to.todo_likes_set.count}}
+        </li>
+    </ul>
+    {% endfor %}
+
+    <form action={% url 'add' %} method="POST">
+        {% csrf_token %}
+         {{form.text}}
+        <button type="submit" url=>Add</button>
+    </form>  
+    <a href="{%url 'logout'%}"><button>Logout</button></a>
+    {%else%}
+        Sorry you're not logged in.
+        <a href="{%url 'login'%}"><button>Login</button></a>
+    {% endif %}
+ 
+</html>
