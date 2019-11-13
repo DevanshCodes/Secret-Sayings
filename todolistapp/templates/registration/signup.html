@@ -1,0 +1,20 @@
+<head>
+    <body>
+
+        <form method="POST">
+            {%csrf_token%}
+            {{form}}
+            <button type="submit">Submit</button>
+        </form>
+        Login Instead? <a href="{%url 'login'%}"><button>Login</button></a>
+
+        {% for message in messages %}
+
+        <div class="message.tags" font-weight=bold>
+            
+           <p><b> {{message}} </b></p> 
+
+        </div>
+        {% endfor %}
+    </body>
+</head>

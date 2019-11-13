@@ -1,7 +1,8 @@
 from django.shortcuts import render,redirect
 from .models import Todo,Todo_likes
 from .forms import TodoForm
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
+from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 
 # Create your views here.
 
@@ -32,5 +33,22 @@ def like(request,todo_id):
     )
     if not created:
         return redirect('index')
+        messages.error(request,'Bhosidike Kitni baar like karega!')
     else:
         return redirect('index')
+
+def SignUp(request):
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            username = form.cleaned_data.get('username')
+            messages.success(request,'SignUp Successfull')
+        else:
+            messages.error(request,'Invalid SignUp, Please look into rules')
+
+
+    form = UserCreationForm
+    return render(request = request,
+    template_name="registration/signup.html",
+    context={"form":form})

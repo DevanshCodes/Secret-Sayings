@@ -16,9 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth.views import LoginView
+from todolistapp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('django.contrib.auth.urls')),
     path('',include('todolistapp.urls')),
+    path('signup/', views.SignUp , name='signup')
 ]

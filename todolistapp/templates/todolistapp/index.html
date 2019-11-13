@@ -10,6 +10,15 @@
             
             <a href="{% url 'like' to.id %}"><button>like</button></a>
             {{ to.todo_likes_set.count}}
+            {% for message in messages %}
+
+        <div class="alert alert-success">
+            <a class="close" href="#" data-dismiss="alert">×</a>
+
+            {{ message }}
+
+        </div>
+        {% endfor %}
         </li>
     </ul>
     {% endfor %}
@@ -23,6 +32,7 @@
     {%else%}
         Sorry you're not logged in.
         <a href="{%url 'login'%}"><button>Login</button></a>
+        <a href="{%url 'signup'%}"><button>Sign Up</button></a>
     {% endif %}
  
 </html>
